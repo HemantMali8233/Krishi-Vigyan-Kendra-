@@ -23,8 +23,8 @@ const DashboardHome = () => {
   const [searchFields, setSearchFields] = useState({
     discipline: '',
     eventType: '',
-    activityCategory: '',
-    trainingCategory: '',
+    eventCategory: '', // Merged field
+    taluka: '', // New field
     startDate: '',
     endDate: '',
     media: '',
@@ -34,21 +34,15 @@ const DashboardHome = () => {
   // Extract unique options for dropdowns
   const options = useMemo(() => {
     const eventTypes = new Set();
-    const activityCategories = new Set();
-    const trainingCategories = new Set();
+    const eventCategories = new Set(); // Merged
+    const talukas = new Set(); // New
     const media = new Set();
     const contacts = new Set();
 
     rows.forEach(r => {
       if (r.eventType) eventTypes.add(r.eventType);
-      
-      // Categorize categories based on eventType
-      const et = (r.eventType || '').toLowerCase();
-      if (et.includes('activity') && r.eventCategory) {
-        activityCategories.add(r.eventCategory);
-      } else if (et.includes('training') && r.eventCategory) {
-        trainingCategories.add(r.eventCategory);
-      }
+      if (r.eventCategory) eventCategories.add(r.eventCategory);
+      if (r.venueTal) talukas.add(r.venueTal);
 
       if (r.mediaCoverage) media.add(r.mediaCoverage);
       (r.contacts || []).forEach(c => {
@@ -58,8 +52,8 @@ const DashboardHome = () => {
 
     return {
       eventTypes: Array.from(eventTypes).sort(),
-      activityCategories: Array.from(activityCategories).sort(),
-      trainingCategories: Array.from(trainingCategories).sort(),
+      eventCategories: Array.from(eventCategories).sort(),
+      talukas: Array.from(talukas).sort(),
       media: Array.from(media).sort(),
       contacts: Array.from(contacts).sort()
     };
@@ -142,14 +136,14 @@ const DashboardHome = () => {
       result = result.filter(r => (r.eventType || '').toLowerCase() === et);
     }
 
-    if (searchFields.activityCategory) {
-      const act = searchFields.activityCategory.toLowerCase();
-      result = result.filter(r => (r.eventCategory || '').toLowerCase() === act);
+    if (searchFields.eventCategory) {
+      const cat = searchFields.eventCategory.toLowerCase();
+      result = result.filter(r => (r.eventCategory || '').toLowerCase() === cat);
     }
 
-    if (searchFields.trainingCategory) {
-      const tr = searchFields.trainingCategory.toLowerCase();
-      result = result.filter(r => (r.eventCategory || '').toLowerCase() === tr);
+    if (searchFields.taluka) {
+      const tal = searchFields.taluka.toLowerCase();
+      result = result.filter(r => (r.venueTal || '').toLowerCase() === tal);
     }
 
     if (searchFields.startDate) {
@@ -353,28 +347,28 @@ const DashboardHome = () => {
             </select>
           </div>
           <div className="dh-filter-item">
-            <label>Activity Category</label>
+            <label>Event Category</label>
             <select
               className="dh-filter-select"
-              value={searchFields.activityCategory}
-              onChange={(e) => handleFieldChange('activityCategory', e.target.value)}
+              value={searchFields.eventCategory}
+              onChange={(e) => handleFieldChange('eventCategory', e.target.value)}
             >
-              <option value="">All Activity Categories</option>
-              {options.activityCategories.map(cat => (
+              <option value="">All Categories</option>
+              {options.eventCategories.map(cat => (
                 <option key={cat} value={cat}>{cat}</option>
               ))}
             </select>
           </div>
           <div className="dh-filter-item">
-            <label>Training Category</label>
+            <label>Taluka</label>
             <select
               className="dh-filter-select"
-              value={searchFields.trainingCategory}
-              onChange={(e) => handleFieldChange('trainingCategory', e.target.value)}
+              value={searchFields.taluka}
+              onChange={(e) => handleFieldChange('taluka', e.target.value)}
             >
-              <option value="">All Training Categories</option>
-              {options.trainingCategories.map(cat => (
-                <option key={cat} value={cat}>{cat}</option>
+              <option value="">All Talukas</option>
+              {options.talukas.map(tal => (
+                <option key={tal} value={tal}>{tal}</option>
               ))}
             </select>
           </div>

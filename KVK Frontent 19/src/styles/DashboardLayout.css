@@ -10,7 +10,7 @@
   flex: 1;
   width: calc(100% - 270px); /* Explicitly subtract sidebar width */
   margin-left: 270px;
-  padding-top: 90px;
+  padding-top: 105px;
   padding-left: 24px;
   padding-right: 24px;
   padding-bottom: 24px;
