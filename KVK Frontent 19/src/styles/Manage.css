@@ -1,0 +1,283 @@
+/* ===== MANAGE CONTAINER - PARENT COMPONENT ===== */
+.manage-container {
+  /* No sidebar/layout margins here: main-content already has them */
+  padding: 24px 0px 32px;
+  background: var(--bg-light);
+  min-height: calc(100vh - 90px); /* account for fixed header */
+  display: flex;
+  flex-direction: column;
+  /* gap: 24px; */
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  overflow-y: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== NAVIGATION TABS IN MANAGE CONTAINER ===== */
+.manage-container .navigation-tabs {
+  background: var(--bg-white);
+  border-radius: 16px;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 16px rgba(47, 65, 86, 0.08);
+  padding: 0;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.manage-container .tabs-container {
+  display: flex;
+  gap: 1px;
+  background: var(--border-light);
+}
+
+.manage-container .tab-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 24px;
+  background: var(--bg-white);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: left;
+  position: relative;
+  min-height: 80px;
+}
+
+.manage-container .tab-button:hover {
+  background: var(--bg-lighter);
+}
+
+.manage-container .tab-button.active {
+  background: #12540690;
+  border-bottom: 3px solid var(--primary-medium);
+}
+
+.manage-container .tab-button.active:hover {
+  background: #12540690;
+}
+
+.manage-container .tab-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--primary-medium);
+  border-radius: 10px;
+  color: var(--bg-lighter);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.manage-container .tab-button.active .tab-icon {
+  background: #0f3c10;
+  box-shadow: 0 4px 12px rgba(52, 82, 96, 0.3);
+}
+
+.manage-container .tab-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.manage-container .tab-label {
+  color: var(--primary-dark);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.manage-container .tab-button.active .tab-label {
+  color: #ffffff;
+}
+
+.manage-container .tab-description {
+  color: var(--primary-medium);
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0.9;
+  line-height: 1.3;
+}
+
+.manage-container .tab-button.active .tab-description {
+  color: #ffffff;
+}
+.manage-container .tab-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--primary-medium);
+  border-radius: 50%;
+  color: var(--bg-lighter);
+  flex-shrink: 0;
+  animation: slide-in 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===== CONTENT WRAPPER FOR CHILD COMPONENTS ===== */
+.manage-container .content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Placeholder when no tab is selected */
+.manage-container .content-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(13, 51, 14, 0.08);
+  margin-top: 25px;
+}
+
+.manage-container .placeholder-card h4 {
+  color: var(--primary-dark);
+  margin: 0 0 8px 0;
+}
+
+.manage-container .placeholder-card p {
+  color: var(--primary-medium);
+  margin: 0;
+}
+/* ===== FIX FOR CHILD COMPONENTS INSIDE MANAGE CONTAINER ===== */
+.manage-container .manage-employee-container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background: transparent;
+  min-height: auto;
+  gap: 20px;
+}
+
+.manage-container .employee-header {
+  margin-top: 0;
+}
+
+/* ===== SMOOTH TRANSITIONS ===== */
+.manage-container,
+.manage-container .navigation-tabs,
+.manage-container .tab-button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+.manage-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.manage-container::-webkit-scrollbar-track {
+  background: var(--bg-light);
+  border-radius: 4px;
+}
+
+.manage-container::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 4px;
+}
+
+.manage-container::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-medium);
+}
+
+/* ===== FADE-IN FOR SECTIONS ===== */
+.manage-container > *:not(.navigation-tabs) {
+  animation: fade-in 0.3s ease;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE DESIGN FOR MANAGE CONTAINER ===== */
+@media (max-width: 1200px) {
+  .manage-container {
+    padding: 20px 24px 24px;
+  }
+}
+
+@media (max-width: 992px) {
+  .manage-container {
+    padding: 16px 20px 20px;
+  }
+
+  .manage-container .tabs-container {
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .manage-container .tab-button {
+    min-height: auto;
+    padding: 16px;
+  }
+
+  .manage-container .tab-description {
+    display: none;
+  }
+
+  .manage-container .tab-indicator {
+    transform: rotate(90deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .manage-container {
+    padding: 12px 16px 16px;
+    gap: 16px;
+  }
+
+  .manage-container .tab-button {
+    padding: 12px;
+  }
+
+  .manage-container .tab-label {
+    font-size: 0.9rem;
+  }
+
+  .manage-container .tab-icon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 576px) {
+  .manage-container {
+    padding: 8px 12px 12px;
+  }
+
+  .manage-container .tab-button {
+    padding: 10px;
+  }
+
+  .manage-container .tab-label {
+    font-size: 0.85rem;
+  }
+}

@@ -1,0 +1,495 @@
+/* src/styles/DashboardHome.css */
+
+.dh-container {
+  width: 100%;
+  max-width: 100%;
+  /* Removed padding as main-content in DashboardLayout.css already provides 24px */
+  padding: 0; 
+  margin: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Header - Matches .me-employee-header / .da-employee-header */
+.dh-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--me-white, #ffffff);
+  padding: 20px 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(47, 65, 86, 0.08);
+  border: 1px solid var(--me-border, #D7E3D2);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dh-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.dh-logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--me-primary-medium, #2D531A) 0%, var(--me-primary-dark, #071E07) 100%);
+  color: white;
+  border-radius: 14px;
+  box-shadow: 0 8px 16px rgba(45, 83, 26, 0.2);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.dh-logo-icon {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  z-index: 2;
+}
+
+.dh-title-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.dh-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--me-primary-dark, #071E07);
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.dh-subtitle {
+  color: var(--me-primary-medium, #2D531A);
+  margin: 2px 0 0 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.dh-header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.dh-filter-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--me-white, #ffffff);
+  border: 2px solid var(--me-primary-medium, #2D531A);
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  color: var(--me-primary-medium, #2D531A);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dh-filter-toggle-btn:hover {
+  background: var(--bg-lighter, #F3F6F0);
+  transform: translateY(-1px);
+}
+
+.dh-filter-toggle-btn.active {
+  background: var(--me-primary-medium, #2D531A);
+  color: white;
+  box-shadow: 0 4px 12px rgba(45, 83, 26, 0.2);
+}
+
+/* Stat Card - Matches .me-stat-card */
+.dh-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--me-white, #ffffff);
+  padding: 12px 20px;
+  border-radius: 14px;
+  border: 1px solid var(--me-border, #D7E3D2);
+  box-shadow: 0 4px 12px rgba(47, 65, 86, 0.05);
+}
+
+.dh-stat-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--me-primary-light, #6E8649) 0%, #A9B98F 100%);
+  color: var(--me-primary-medium, #2D531A);
+  border-radius: 10px;
+}
+
+.dh-stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.dh-stat-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--me-primary-medium, #2D531A);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dh-stat-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--me-primary-dark, #071E07);
+  line-height: 1;
+}
+
+/* Advanced Filters Section */
+.dh-filters-section {
+  background: var(--me-white, #ffffff);
+  border-radius: 16px;
+  margin-bottom: 0;
+  border: 1px solid var(--me-border, #D7E3D2);
+  box-shadow: 0 4px 16px rgba(47, 65, 86, 0.08);
+  width: 100%;
+  box-sizing: border-box;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.dh-filters-section.show {
+  max-height: 1000px;
+  padding: 24px;
+  opacity: 1;
+  pointer-events: all;
+  margin-top: 4px;
+}
+
+.dh-filters-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--me-border, #D7E3D2);
+}
+
+.dh-filters-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--me-primary-dark, #071E07);
+  margin: 0;
+}
+
+.dh-filters-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Force 4 equal columns */
+  gap: 24px;
+  align-items: flex-end;
+}
+
+.dh-filter-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.dh-search-filter-item {
+  grid-column: span 2; /* Search & Year takes 2 columns */
+}
+
+.dh-filter-item label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--me-primary-medium, #2D531A);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.dh-filter-select,
+.dh-filter-item input {
+  height: 48px; /* Fixed height for all inputs */
+  padding: 0 16px;
+  border-radius: 12px;
+  border: 2px solid var(--me-primary-medium, #2D531A);
+  background: var(--me-white, #ffffff);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--me-primary-dark, #071E07);
+  outline: none;
+  transition: all 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dh-filter-select:focus,
+.dh-filter-item input:focus {
+  border-color: var(--me-primary-dark, #071E07);
+  box-shadow: 0 0 0 4px rgba(45, 83, 26, 0.1);
+}
+
+.dh-search-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  padding: 0 16px;
+  width: 100%;
+  height: 48px;
+  border-radius: 12px;
+  border: 2px solid var(--me-primary-medium, #2D531A);
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  overflow: hidden; /* Ensure content doesn't break the border */
+}
+
+.dh-search-box:focus-within {
+  border-color: var(--me-primary-dark, #071E07);
+  box-shadow: 0 0 0 4px rgba(45, 83, 26, 0.1);
+}
+
+.dh-search-input {
+  border: none !important;
+  background: transparent !important;
+  width: 100%;
+  height: 100%;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--me-primary-dark, #071E07);
+  outline: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.dh-search-icon {
+  color: var(--me-primary-medium, #2D531A);
+  flex-shrink: 0;
+}
+
+/* Removed old dh-controls-group and dh-year-filter related styles */
+
+.dh-reset-btn {
+  padding: 0 20px;
+  height: 36px;
+  background: white;
+  border: 2px solid var(--me-border, #D7E3D2);
+  border-radius: 10px;
+  color: var(--me-danger, #D97272);
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1280px) {
+  .dh-filters-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .dh-filters-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .dh-filters-grid {
+    grid-template-columns: 1fr;
+  }
+  .dh-search-filter-item {
+    grid-column: span 1;
+  }
+}
+
+.dh-reset-btn:hover {
+  background: #fff5f5;
+  border-color: var(--me-danger, #D97272);
+}
+
+/* Main Content Area */
+.dh-content {
+  background: var(--me-white, #ffffff);
+  border-radius: 16px;
+  min-height: 400px;
+  box-shadow: 0 4px 16px rgba(47, 65, 86, 0.08);
+  border: 1px solid var(--me-border, #D7E3D2);
+  overflow: hidden; 
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* DETable specific overrides for Dashboard */
+.dh-content .da-section {
+  padding: 20px;
+  border: none;
+  box-shadow: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dh-content .da-table-wrap {
+  overflow: auto;
+  max-height: 65vh;
+  border: 1px solid var(--me-border, #D7E3D2);
+  border-radius: 12px;
+}
+
+/* Custom scrollbar for DETable in Dashboard */
+.dh-content .da-table-wrap::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dh-content .da-table-wrap::-webkit-scrollbar-track {
+  background: var(--bg-lighter, #F3F6F0);
+  border-radius: 4px;
+}
+
+.dh-content .da-table-wrap::-webkit-scrollbar-thumb {
+  background: var(--me-primary-light, #6E8649);
+  border-radius: 4px;
+}
+
+.dh-content .da-table-wrap::-webkit-scrollbar-thumb:hover {
+  background: var(--me-primary-medium, #2D531A);
+}
+
+.dh-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  color: var(--me-primary-medium, #2D531A);
+  gap: 16px;
+}
+
+.dh-spinner {
+  width: 48px;
+  height: 48px;
+  animation: dh-spin 1s linear infinite;
+  color: var(--me-primary-medium, #2D531A);
+}
+
+@keyframes dh-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .dh-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .dh-header-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .dh-search-filter-item {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .dh-header-right {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .dh-stat-card {
+    width: 100%;
+  }
+
+  .dh-controls-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .dh-year-filter {
+    border-left: none;
+    border-top: 1px solid var(--me-border, #D7E3D2);
+    padding: 8px 0 0 0;
+  }
+}
+
+/* Print Logic: Tiled view (Hidden during screen viewing) */
+.dh-print-only-container {
+  display: none;
+}
+
+@media print {
+  /* Set Page Orientation to Landscape */
+  @page {
+    size: landscape;
+    margin: 10mm;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .dh-print-only-container,
+  .dh-print-only-container * {
+    visibility: visible !important;
+  }
+
+  .dh-print-only-container {
+    display: block !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+  }
+
+  .dh-print-page {
+    page-break-after: always !important;
+    width: 100% !important;
+    background: white !important;
+    padding: 0 !important;
+    margin-bottom: 20mm;
+  }
+
+  .dh-print-page .da-table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    border: 2px solid #000 !important;
+    table-layout: fixed !important;
+  }
+
+  .dh-print-page .da-table th, 
+  .dh-print-page .da-table td {
+    border: 1px solid #000 !important;
+    padding: 10px 8px !important;
+    font-size: 10pt !important;
+    color: #000 !important;
+    word-break: break-word !important;
+    vertical-align: middle !important;
+  }
+
+  .dh-print-page .da-table thead th {
+    background-color: #eee !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

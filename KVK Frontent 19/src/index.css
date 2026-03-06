@@ -1,0 +1,99 @@
+:root {
+  --primary-dark: #071E07;
+  --primary-medium: #2D531A;
+  --primary-light: #477023;
+  --primary-lighter: #6E8649;
+  --bg-white: #FFFFFF;
+  --bg-lighter: #F3F6F0;
+  --bg-light: #EAF1E4;
+  --border-light: #D7E3D2;
+  --border-subtle: #E5EEE0;
+  --status-active: #2D6A4F;
+  --status-inactive: #D97272;
+  --status-pending: #FFB347;
+  --status-info: #4AAE6E;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.kvk-toast {
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25);
+}
+
+.Toastify__toast--success.kvk-toast {
+  background: #065f46;
+  color: #f9fafb;
+}
+
+.Toastify__toast--error.kvk-toast {
+  background: #991b1b;
+  color: #f9fafb;
+}
+
+/* Base toast: square card with slight rounding */
+.Toastify__toast.kvk-toast {
+  border-radius: 10px;                      /* small curve */
+  padding: 0;
+  box-shadow:
+    0 10px 20px rgba(15, 23, 42, 0.25),     /* main shadow */
+    0 0 0 1px rgba(15, 23, 42, 0.08);       /* subtle border */
+  overflow: hidden;
+}
+
+/* Inner content */
+.Toastify__toast-body {
+  margin: 0;
+  padding: 12px 18px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+/* Success: ManageEmployee theme (#567C8D) */
+.Toastify__toast--success.kvk-toast {
+  background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+  color: #f9fafb;
+}
+
+/* Error: ManageEmployee danger (#D97272) */
+.Toastify__toast--error.kvk-toast {
+  background: linear-gradient(135deg, #D97272, #b91c1c);
+  color: #f9fafb;
+}
+
+/* (Optional) Info and warning variants */
+.Toastify__toast--info.kvk-toast {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #f9fafb;
+}
+
+.Toastify__toast--warning.kvk-toast {
+  background: linear-gradient(135deg, #f97316, #c2410c);
+  color: #fffbeb;
+}
+
+/* Progress bar: slim, bottom, fits box look */
+.Toastify__progress-bar {
+  background: rgba(248, 250, 252, 0.85);
+  height: 3px;
+  border-radius: 999px;
+}
