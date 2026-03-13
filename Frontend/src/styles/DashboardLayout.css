@@ -1,0 +1,30 @@
+/* Dashboard: Header full width, Sidebar below header */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-light);
+}
+
+/* Main content: right of sidebar, below header */
+.main-content {
+  flex: 1;
+  width: calc(100% - 270px); /* Explicitly subtract sidebar width */
+  margin-left: 270px;
+  padding-top: 105px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-bottom: 24px;
+  box-sizing: border-box;
+  transition: all 0.25s ease; /* Transition all for width + margin change */
+  min-height: 100vh;
+}
+
+.dashboard-container.sidebar-collapsed .main-content {
+  margin-left: 80px;
+  width: calc(100% - 80px);
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
